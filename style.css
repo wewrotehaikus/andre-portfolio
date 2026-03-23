@@ -56,86 +56,86 @@ h1, h2 {
 }
 /* Left column — all your text */
 .hero-left {
-  position: relative;
-  z-index: 1;   /* sits above the bg-stripe */
-  padding: 4rem 3rem 4rem 8vw;
+    position: relative;
+    z-index: 1;   /* sits above the bg-stripe */
+    padding: 4rem 3rem 4rem 8vw;
 }
 
 
 
 /* Your name — bigger, bolder, split across two lines */
 .hero-title {
-  font-family: 'Playfair Display', serif;
-  font-weight: 900;
-  font-size: clamp(3rem, 6vw, 5.5rem);  /* scales between 3rem and 5.5rem based on viewport */
-  line-height: 1.05;
-  color: var(--burgundy);
-  letter-spacing: -1px;
-  margin-bottom: 0;
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: clamp(3rem, 6vw, 5.5rem);  /* scales between 3rem and 5.5rem based on viewport */
+    line-height: 1.05;
+    color: var(--burgundy);
+    letter-spacing: -1px;
+    margin-bottom: 0;
 }
 
 /* The <em> inside your name — italic, accent color */
 .hero-title em {
-  font-style: italic;
-  font-weight: 400;
-  color: var(--orange-red);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--orange-red);
 }
 
 .hero-tagline {
-  font-size: 1.1rem;
-  line-height: 1.7;
-  color: #555;
-  max-width: 420px;
-  margin-top: 1.5rem;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #555;
+    max-width: 420px;
+    margin-top: 1.5rem;
 }
 
 /* The two buttons sit side by side */
 .hero-ctas {
-  display: flex;
-  gap: 1rem;
-  margin-top: 2.5rem;
-  flex-wrap: wrap;           /* wraps to a second line on small screens */
+    display: flex;
+    gap: 1rem;
+    margin-top: 2.5rem;
+    flex-wrap: wrap;           /* wraps to a second line on small screens */
 }
 
 /* Right column — the monogram visual */
 .hero-right {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 3rem;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem;
 }
 
 /* The outer container controls the size of the whole monogram */
 .monogram-wrapper {
-  position: relative;
-  width: min(320px, 38vw);
-  aspect-ratio: 1; /* forces it to always be a perfect square */  
+    position: relative;
+    width: min(320px, 38vw);
+    aspect-ratio: 1; /* forces it to always be a perfect square */  
 }
 
 /* The spinning ring around the monogram.
    It's position: absolute so it can extend beyond the wrapper bounds. */
 .orbit-ring {
-  position: absolute;
-  inset: -18%;
-  border: 1.5px solid var(--mustard);
-  border-radius: 50%;
-  opacity: 0.6;
-  animation: spinSlow 18s linear infinite;
+    position: absolute;
+    inset: -18%;
+    border: 1.5px solid var(--mustard);
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: spinSlow 18s linear infinite;
 }
 
 /* A dot on the ring to make the rotation visible */
 .orbit-ring::after {
-  content: '';
-  position: absolute;
-  top: -5px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--mustard);
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--mustard);
 }
 
 .orbit-ring-static {
@@ -163,21 +163,21 @@ h1, h2 {
 }
 
 .monogram-letter {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(4rem, 9vw, 7rem);
-  font-weight: 900;
-  color: var(--mustard);
-  line-height: 1;
-  letter-spacing: -3px;
-  user-select: none;         /* prevents accidental text selection on double-click */
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(4rem, 9vw, 7rem);
+    font-weight: 900;
+    color: var(--mustard);
+    line-height: 1;
+    letter-spacing: -3px;
+    user-select: none;         /* prevents accidental text selection on double-click */
 }
 
 .monogram-subtitle {
-  font-size: 0.65rem;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: rgba(244, 244, 240, 0.5);
-  margin-top: 0.5rem;
+    font-size: 0.65rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(244, 244, 240, 0.5);
+    margin-top: 0.5rem;
 }
 
 /* The spin animation — just rotates 360° on a loop */
@@ -298,6 +298,7 @@ h3 {
     flex-wrap: wrap;
     gap: 2rem;
     margin-top: 2rem;
+    justify-content: center;
 }
 
 .project-card {
@@ -399,9 +400,9 @@ input:focus, textarea:focus {
 .hero-tagline,
 .hero-ctas,
 .hero-right {
-  opacity: 0;
-  transform: translateY(16px);
-  animation: fadeUp 0.7s ease forwards;
+    opacity: 0;
+    transform: translateY(16px);
+    animation: fadeUp 0.7s ease forwards;
 }
 
 /* Each element gets a slightly later delay so they stagger in one by one */
@@ -412,35 +413,47 @@ input:focus, textarea:focus {
 .hero-right    { animation-delay: 0.5s; }
 
 @keyframes fadeUp {
-  to {
+    to {
     opacity: 1;
     transform: translateY(0);
-  }
+    }
 }
 
 @media (max-width: 768px) {
-  .hero {
+.hero {
     grid-template-columns: 1fr;   /* single column on mobile */
     text-align: center;
     padding: 6rem 1.5rem 4rem;
     min-height: auto;
     gap: 3rem;
-  }
+}
 
-  .hero-bg-stripe { display: none; }
+.hero-bg-stripe { display: none; }
 
-  .hero-left {
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;          /* centers everything when text-align: center */
-  }
+.hero-left {
+padding: 0;
+display: flex;
+flex-direction: column;
+align-items: center;  /* centers everything when text-align: center */
+}
 
-  .hero-eyebrow { justify-content: center; }
+.hero-eyebrow { justify-content: center; }
 
-  .hero-ctas { justify-content: center; }
+.hero-ctas { justify-content: center; }
 
-  .monogram-wrapper { width: 200px; }
+.monogram-wrapper { width: 200px; }
+
+.hero::after { display: none; }
+
+.chip {
+    font-size: 0.65rem;
+    padding: 0.3rem 0.7rem;
+}
+
+.chip-1 { top: -8%; left: -10%; }
+.chip-2 { bottom: 0%; left: -10%; }
+.chip-3 { top: -8%; right: -10%; }
+.chip-4 { bottom: 0%; right: -10%; }
 }
 
 .hero::after {
