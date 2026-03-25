@@ -218,7 +218,8 @@
                     </div>
                 </div>
                 <div class="contact-form-wrap">
-                    <form name="contact" method="POST" data-netlify="true" action="/success.html">
+                    <form id="contactForm" name="contact" method="POST" data-netlify="true">
+                        <input type="hidden" name="form-name" value="contact" />
                         <div class="form-row">    
                             <div class="form-group">
                                 <label for="name">Name</label>
@@ -317,6 +318,68 @@
             scrollHint.classList.add('hidden');
         }
     });
+</script>
+
+<script>
+    //===== Contact Form ====
+    const contactForm = document.getElementById('contactForm');
+
+    contactForm.addEventListener('submit', async function (e) {
+        e.preventDefault(); // stops the browser form doing a normal form POST
+
+        const formData = new FormData(contactForm);
+
+        try {
+            const response = await fetch('/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams(formData).toString()
+            });
+
+            if (response.ok) {
+                showToast('Message sent! I\'ll get back to you soon.');
+                contactForm.reset();
+            } else {
+                showToast('Something went wrong. Try emailing me directly.', true);
+            }
+
+        } catch (err) {
+            showToast('Network error. Try emailing me directly.', true);
+        }
+    });
+
+    function showToast(message, isError = false) {
+        const toast = document.createElement('div');
+        toast.textContent = message;
+        toast.style.cssText = `
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        background: ${isError ? '#7a1c1c' : 'var(--burgundy)'};
+        color: var(--cream);
+        padding: 1rem 1.5rem;
+        border-radius: 6px;
+        font-family: 'Lato', sans-serif;
+        font-size: 0.95rem;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        z-index: 9999;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    `;
+
+    document.body.appendChild(toast);
+
+    //Fade in
+    requestAnimationFrame(() => {
+        toast.style.opacity ='1';
+    });
+
+    //Fade out and remove after 4 seconds
+    setTimeout(() =>{
+        toast.style.opacity = '0';
+        setTimeout(() => toast.remove(), 300);
+    }, 4000);
+    }
 </script>
 
 <script>

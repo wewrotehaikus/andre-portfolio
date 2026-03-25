@@ -818,7 +818,7 @@ align-items: center;  /* centers everything when text-align: center */
     }
 
     .about-photo {
-        aspect-ratio: 1 / 1;
+        aspect-ratio: 3 / 6;
         max-width: 300px;
         margin: 0 auto;
     }
