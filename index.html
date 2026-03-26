@@ -457,7 +457,8 @@ async function loadTrack(index) {
 
     // Draw art — real cover if available, placeholder if not
     // Try to read embedded cover art from hosted MP3
-    jsmediatags.read(TRACKS[index].file, {
+    const fullUrl = window.location.origin + '/' + TRACKS[index].file;
+    jsmediatags.read(fullUrl, {
         onSuccess: function(tag) {
             const pic = tag.tags.picture;
             if (pic) {
