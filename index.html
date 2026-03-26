@@ -456,11 +456,22 @@ async function loadTrack(index) {
     document.getElementById('trackArtist').textContent = TRACKS[index].artist;
 
     // Draw art — real cover if available, placeholder if not
-    if (TRACKS[index].cover) {
-        drawRealArt(TRACKS[index].cover);
-    } else {
-        drawPlaceholderArt(TRACKS[index].name);
-    }
+    // Try to read embedded cover art from hosted MP3
+    jsmediatags.read(TRACKS[index].file, {
+        onSuccess: function(tag) {
+            const pic = tag.tags.picture;
+            if (pic) {
+                const blob = new Blob([new Uint8Array(pic.data)], { type: pic.format });
+                const url = URL.createObjectURL(blob);
+                drawRealArt(url);
+            } else {
+                drawPlaceholderArt(TRACKS[index].name);
+            }
+        },
+        onError: function() {
+            drawPlaceholderArt(TRACKS[index].name);
+        }
+    });
 
     if (!audioCtx) audioCtx = new AudioContext();
 
