@@ -440,6 +440,7 @@
 
 // ===== LOAD TRACK =====
 async function loadTrack(index) {
+    const wasPlaying = isPlaying; // remembers if the track is playing
     if (source) {
         source.onended = null;
         source.stop();
@@ -481,6 +482,11 @@ async function loadTrack(index) {
         const arrayBuffer = await response.arrayBuffer();
         audioBuffer = await audioCtx.decodeAudioData(arrayBuffer);
         trackDuration = audioBuffer.duration;
+
+        if (wasPlaying) {
+            playTrack();
+        }
+        
     } catch (e) {
         trackNameEl.textContent = TRACKS[index].name + ' (not found)';
         audioBuffer = null;
