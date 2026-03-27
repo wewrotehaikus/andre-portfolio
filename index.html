@@ -495,8 +495,9 @@ async function loadTrack(index) {
 
     // ===== PLAY FROM OFFSET =====
     // This is the core of pause/resume — always starts from pauseOffset
-    function playFromOffset(offset) {
-        if (!audioBuffer || !audioCtx) return;
+    async function playFromOffset(offset) {
+    if (!audioBuffer || !audioCtx) return;
+    await audioCtx.resume();
 
         // Set up analyser (FFT node)
         analyser = audioCtx.createAnalyser();
@@ -541,14 +542,14 @@ async function loadTrack(index) {
     }
 
     // ===== PLAY/PAUSE TOGGLE =====
-    playPauseBtn.addEventListener('click', () => {
-        if (!audioBuffer) return;
-        if (isPlaying) {
-            pause();
-        } else {
-            playFromOffset(pauseOffset); // resume from where we paused
-        }
-    });
+    playPauseBtn.addEventListener('click', async () => {
+    if (!audioBuffer) return;
+    if (isPlaying) {
+        pause();
+    } else {
+        await playFromOffset(pauseOffset);
+    }
+});
 
     // ===== PREV / NEXT =====
     prevBtn.addEventListener('click', () => {
