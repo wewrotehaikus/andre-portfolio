@@ -552,15 +552,17 @@ async function loadTrack(index) {
 });
 
     // ===== PREV / NEXT =====
-    prevBtn.addEventListener('click', () => {
-        currentTrackIndex = (currentTrackIndex - 1 + TRACKS.length) % TRACKS.length;
-        loadTrack(currentTrackIndex);
-    });
+    prevBtn.addEventListener('click', async () => {
+    currentTrackIndex = (currentTrackIndex - 1 + TRACKS.length) % TRACKS.length;
+    await loadTrack(currentTrackIndex);
+    playFromOffset(0);
+});
 
-    nextBtn.addEventListener('click', () => {
-        currentTrackIndex = (currentTrackIndex + 1) % TRACKS.length;
-        loadTrack(currentTrackIndex);
-    });
+nextBtn.addEventListener('click', async () => {
+    currentTrackIndex = (currentTrackIndex + 1) % TRACKS.length;
+    await loadTrack(currentTrackIndex);
+    playFromOffset(0);
+});
 
     // ===== PROGRESS BAR =====
     function updateProgress() {
