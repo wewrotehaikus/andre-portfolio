@@ -478,7 +478,7 @@ async function loadTrack(index) {
     if (!audioCtx) audioCtx = new AudioContext();
 
     try {
-        const response = await fetch(TRACKS[index].file);
+        const response = await fetch(window.location.origin + '/' + TRACKS[index].file);
         const arrayBuffer = await response.arrayBuffer();
         audioBuffer = await audioCtx.decodeAudioData(arrayBuffer);
         trackDuration = audioBuffer.duration;
@@ -486,7 +486,7 @@ async function loadTrack(index) {
         if (wasPlaying) {
             playTrack();
         }
-        
+
     } catch (e) {
         trackNameEl.textContent = TRACKS[index].name + ' (not found)';
         audioBuffer = null;
